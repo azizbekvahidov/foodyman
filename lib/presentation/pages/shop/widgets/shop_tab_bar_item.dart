@@ -6,20 +6,18 @@ class ShopTabBarItem extends StatelessWidget {
   final String title;
   final bool isActive;
 
-
-  const ShopTabBarItem(
-      {Key? key,
-        required this.title,
-        required this.isActive,
-      })
-      : super(key: key);
+  const ShopTabBarItem({
+    Key? key,
+    required this.title,
+    required this.isActive,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
-        color: isActive ? Style.brandGreen :  Style.white,
+        color: isActive ? Style.brandGreen : Style.white,
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         boxShadow: [
           BoxShadow(
@@ -30,8 +28,10 @@ class ShopTabBarItem extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 18.w),
-      margin: EdgeInsets.only(right: 9.w,top: 24.h),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 24.w),
+      margin: EdgeInsets.only(
+        right: 9.w,
+      ),
       child: Text(
         title,
         style: Style.interNormal(

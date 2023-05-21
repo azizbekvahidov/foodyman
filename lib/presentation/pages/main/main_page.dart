@@ -65,11 +65,9 @@ class _MainPageState extends State<MainPage> {
     });
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteMessageData data = RemoteMessageData.fromJson(message.data);
-      AppHelpers.showCheckTopSnackBarInfo(
-          context,
+      AppHelpers.showCheckTopSnackBarInfo(context,
           "${AppHelpers.getTranslation(TrKeys.id)} #${message.notification?.title} ${message.notification?.body}",
-          onTap: ()
-      {
+          onTap: () {
         context.router.popUntilRoot();
         context.pushRoute(
           OrderProgressRoute(
@@ -115,7 +113,7 @@ class _MainPageState extends State<MainPage> {
               shopId: link.substring(
                   link.indexOf("shop/") + 5, link.lastIndexOf("?")),
               productId:
-              link.substring(link.indexOf("="), link.lastIndexOf("/"))),
+                  link.substring(link.indexOf("="), link.lastIndexOf("/"))),
         );
       } else if (link.contains("restaurant")) {
         context.router.popUntilRoot();
@@ -124,7 +122,7 @@ class _MainPageState extends State<MainPage> {
               shopId: link.substring(
                   link.indexOf("restaurant/") + 11, link.lastIndexOf("?")),
               productId:
-              link.substring(link.indexOf("=") + 1, link.lastIndexOf("/"))),
+                  link.substring(link.indexOf("=") + 1, link.lastIndexOf("/"))),
         );
       }
     }).onError((error) {
@@ -132,7 +130,7 @@ class _MainPageState extends State<MainPage> {
     });
 
     final PendingDynamicLinkData? data =
-    await FirebaseDynamicLinks.instance.getInitialLink();
+        await FirebaseDynamicLinks.instance.getInitialLink();
     final Uri? deepLink = data?.link;
     if (deepLink.toString().contains("group")) {
       context.router.popUntilRoot();
@@ -146,9 +144,9 @@ class _MainPageState extends State<MainPage> {
               deepLink.toString().lastIndexOf("&o")),
           ownerId: int.tryParse(
             deepLink.toString().substring(
-              deepLink.toString().lastIndexOf("&o") + 3,
-              deepLink.toString().lastIndexOf("&"),
-            ),
+                  deepLink.toString().lastIndexOf("&o") + 3,
+                  deepLink.toString().lastIndexOf("&"),
+                ),
           ),
         ),
       );
@@ -189,156 +187,141 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return KeyboardDismisser(
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Consumer(
-            builder: (BuildContext context, WidgetRef ref, Widget? child) {
-              final index = ref
-                  .watch(mainProvider)
-                  .selectIndex;
-              return ProsteIndexedStack(
-                index: index,
-                children: list,
-              );
-            },
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation
-              .centerFloat,
-          floatingActionButton: Consumer(builder: (context, ref, child) {
-            final index = ref
-                .watch(mainProvider)
-                .selectIndex;
-            final user = ref
-                .watch(profileProvider)
-                .userData;
-            final orders = ref
-                .watch(shopOrderProvider)
-                .cart;
-            final event = ref.read(mainProvider.notifier);
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BlurWrap(
-                  radius: BorderRadius.circular(100.r),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    decoration: BoxDecoration(
-                        color: Style.bottomNavigationBarColor.withOpacity(0.6),
-                        borderRadius: BorderRadius.all(Radius.circular(100.r))),
-                    height: 60.r,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.r),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          BottomNavigatorItem(
-                            isScrolling: index == 3
-                                ? false
-                                : ref
-                                .watch(mainProvider)
-                                .isScrolling,
-                            selectItem: () {
-                              event.changeScrolling(false);
-                              event.selectIndex(0);
-                            },
-                            index: 0,
-                            currentIndex: index,
-                            selectIcon: FlutterRemix.restaurant_fill,
-                            unSelectIcon: FlutterRemix.restaurant_line,
-                          ),
-                          BottomNavigatorItem(
-                            isScrolling: index == 3
-                                ? false
-                                : ref
-                                .watch(mainProvider)
-                                .isScrolling,
-                            selectItem: () {
-                              event.changeScrolling(false);
-                              event.selectIndex(1);
-                            },
-                            currentIndex: index,
-                            index: 1,
-                            selectIcon: FlutterRemix.search_fill,
-                            unSelectIcon: FlutterRemix.search_line,
-                          ),
-                          BottomNavigatorItem(
-                            isScrolling: index == 3
-                                ? false
-                                : ref
-                                .watch(mainProvider)
-                                .isScrolling,
-                            selectItem: () {
-                              event.changeScrolling(false);
-                              event.selectIndex(2);
-                            },
-                            currentIndex: index,
-                            index: 2,
-                            selectIcon: FlutterRemix.heart_fill,
-                            unSelectIcon: FlutterRemix.heart_line,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              if (event.checkGuest()) {
-                                event.selectIndex(0);
-                                event.changeScrolling(false);
-                                context.replaceRoute(const LoginRoute());
-                              } else {
-                                event.changeScrolling(false);
-                                event.selectIndex(3);
-                              }
-                            },
-                            child: Container(
-                              width: 40.r,
-                              height: 40.r,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: index == 3
-                                          ? Style.brandGreen
-                                          : Style.transparent,
-                                      width: 2.w),
-                                  shape: BoxShape.circle),
-                              child: CustomNetworkImage(
-                                url: user?.img ??
-                                    LocalStorage.instance.getProfileImage(),
-                                height: 40.r,
-                                width: 40
-                                  ..r,
-                                radius: 20.r,
-                              ),
-                            ),
-                          ),
-                        ],
+      resizeToAvoidBottomInset: false,
+      body: Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          final index = ref.watch(mainProvider).selectIndex;
+          return ProsteIndexedStack(
+            index: index,
+            children: list,
+          );
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Consumer(builder: (context, ref, child) {
+        final index = ref.watch(mainProvider).selectIndex;
+        final user = ref.watch(profileProvider).userData;
+        final orders = ref.watch(shopOrderProvider).cart;
+        final event = ref.read(mainProvider.notifier);
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlurWrap(
+              radius: BorderRadius.circular(100.r),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                decoration: BoxDecoration(
+                    color: Style.bottomNavigationBarColor.withOpacity(0.6),
+                    borderRadius: BorderRadius.all(Radius.circular(100.r))),
+                height: 60.r,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.r),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      BottomNavigatorItem(
+                        isScrolling: index == 3
+                            ? false
+                            : ref.watch(mainProvider).isScrolling,
+                        selectItem: () {
+                          event.changeScrolling(false);
+                          event.selectIndex(0);
+                        },
+                        index: 0,
+                        currentIndex: index,
+                        selectIcon: FlutterRemix.restaurant_fill,
+                        unSelectIcon: FlutterRemix.restaurant_line,
                       ),
-                    ),
+                      BottomNavigatorItem(
+                        isScrolling: index == 3
+                            ? false
+                            : ref.watch(mainProvider).isScrolling,
+                        selectItem: () {
+                          event.changeScrolling(false);
+                          event.selectIndex(1);
+                        },
+                        currentIndex: index,
+                        index: 1,
+                        selectIcon: FlutterRemix.search_fill,
+                        unSelectIcon: FlutterRemix.search_line,
+                      ),
+                      BottomNavigatorItem(
+                        isScrolling: index == 3
+                            ? false
+                            : ref.watch(mainProvider).isScrolling,
+                        selectItem: () {
+                          event.changeScrolling(false);
+                          event.selectIndex(2);
+                        },
+                        currentIndex: index,
+                        index: 2,
+                        selectIcon: FlutterRemix.heart_fill,
+                        unSelectIcon: FlutterRemix.heart_line,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (event.checkGuest()) {
+                            event.selectIndex(0);
+                            event.changeScrolling(false);
+                            context.replaceRoute(const LoginRoute());
+                          } else {
+                            event.changeScrolling(false);
+                            event.selectIndex(3);
+                          }
+                        },
+                        child: Container(
+                          width: 40.r,
+                          height: 40.r,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: index == 3
+                                      ? Style.brandGreen
+                                      : Style.transparent,
+                                  width: 2.w),
+                              shape: BoxShape.circle),
+                          child: CustomNetworkImage(
+                            url: user?.img ??
+                                LocalStorage.instance.getProfileImage(),
+                            height: 40.r,
+                            width: 40..r,
+                            radius: 20.r,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                orders == null ||
+              ),
+            ),
+            orders == null ||
                     (orders.userCarts?.isEmpty ?? true) ||
                     ((orders.userCarts?.isEmpty ?? true)
                         ? true
                         : (orders.userCarts?.first.cartDetails?.isEmpty ??
-                        true)) || orders.ownerId != LocalStorage.instance.getUserId()
-                    ? const SizedBox.shrink()
-                    : AnimationButtonEffect(
-                  child: GestureDetector(
-                    onTap: () {
-                      context.pushRoute(const OrderScreen());
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 8.w),
-                      width: 56.r,
-                      height: 56.r,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Style.brandGreen,
+                            true)) ||
+                    orders.ownerId != LocalStorage.instance.getUserId()
+                ? const SizedBox.shrink()
+                : AnimationButtonEffect(
+                    child: GestureDetector(
+                      onTap: () {
+                        context.pushRoute(const OrderScreen());
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 8.w),
+                        width: 56.r,
+                        height: 56.r,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Style.brandGreen,
+                        ),
+                        child: const Icon(FlutterRemix.shopping_bag_3_line),
                       ),
-                      child: const Icon(FlutterRemix.shopping_bag_3_line),
                     ),
-                  ),
-                )
-              ],
-            );
-          }),
-        ));
+                  )
+          ],
+        );
+      }),
+    ));
   }
 }

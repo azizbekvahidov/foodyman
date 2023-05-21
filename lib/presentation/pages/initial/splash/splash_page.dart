@@ -13,8 +13,6 @@ class SplashPage extends ConsumerStatefulWidget {
 }
 
 class _SplashPageState extends ConsumerState<SplashPage> {
-
-
   @override
   void initState() {
     super.initState();
@@ -33,16 +31,15 @@ class _SplashPageState extends ConsumerState<SplashPage> {
         },
       );
     });
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/splash.png",
-      fit: BoxFit.fill,
-    );
+    return Container();
+
+    // Image.asset(
+    //   "assets/images/splash.png",
+    //   fit: BoxFit.fill,4
+    // );
   }
 }

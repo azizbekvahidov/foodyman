@@ -34,6 +34,7 @@ class ShopPageAvatar extends StatelessWidget {
   final VoidCallback onShare;
   final VoidCallback onLike;
   final BonusModel? bonus;
+  final Widget? backButton;
 
   const ShopPageAvatar(
       {Key? key,
@@ -44,6 +45,7 @@ class ShopPageAvatar extends StatelessWidget {
       required this.onShare,
       required this.bonus,
       this.cartId,
+      this.backButton,
       this.userUuid})
       : super(key: key);
 
@@ -322,6 +324,10 @@ class ShopPageAvatar extends StatelessWidget {
             bgColor: Style.white.withOpacity(0.65),
           ),
         ),
+        Positioned(
+            top: MediaQuery.of(context).padding.top,
+            left: 16.w,
+            child: backButton ?? Container()),
         Positioned(
           top: MediaQuery.of(context).padding.top,
           right: 16.w,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:riverpodtemp/infrastructure/models/models.dart';
@@ -35,7 +34,7 @@ class BannerItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: Style.white,
             borderRadius: BorderRadius.all(
-              Radius.circular(8.r),
+              Radius.circular(30.r),
             ),
           ),
           child: CustomNetworkImage(
@@ -43,7 +42,7 @@ class BannerItem extends StatelessWidget {
             url: banner.img ?? "",
             height: double.infinity,
             width: double.infinity,
-            radius: 8.r,
+            radius: 30.r,
           )),
     );
   }

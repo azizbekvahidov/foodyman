@@ -18,7 +18,7 @@ class WProductExtras extends ConsumerWidget {
     final state = ref.watch(productProvider);
     final notifier = ref.read(productProvider.notifier);
 
-    return  Container(
+    return Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: state.typedExtras.isEmpty ? Style.transparent : Style.white,
@@ -38,10 +38,10 @@ class WProductExtras extends ConsumerWidget {
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
-                  color:  Style.white,
+                  color: Style.white,
                 ),
-                padding: REdgeInsets.symmetric(horizontal: 12, vertical: 14),
-                margin: REdgeInsets.only(bottom: 14),
+                padding: REdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                margin: REdgeInsets.only(bottom: 5),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,11 +50,11 @@ class WProductExtras extends ConsumerWidget {
                       typedExtra.title,
                       style: Style.interNoSemi(
                         size: 16,
-                        color:  Style.black ,
+                        color: Style.black,
                         letterSpacing: -0.4,
                       ),
                     ),
-                    16.verticalSpace,
+                    // 16.verticalSpace,
                     typedExtra.type == ExtrasType.text
                         ? TextExtras(
                             uiExtras: typedExtra.uiExtras,

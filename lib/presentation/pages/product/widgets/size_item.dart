@@ -18,7 +18,7 @@ class SizeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 16.h),
+      padding: EdgeInsets.only(top: 4.h),
       child: GestureDetector(
         onTap: () {
           onTap();
@@ -57,6 +57,8 @@ class SizeItem extends StatelessWidget {
               ),
               16.verticalSpace,
               Divider(
+                thickness: 1,
+                height: 1,
                 color: Style.textGrey.withOpacity(0.2),
               )
             ],

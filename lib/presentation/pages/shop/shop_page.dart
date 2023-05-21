@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
@@ -188,7 +187,8 @@ class _ShopPageState extends ConsumerState<ShopPage>
                         20.horizontalSpace,
                         Expanded(
                           child: CustomButton(
-                              title: AppHelpers.getTranslation(TrKeys.leaveGroup),
+                              title:
+                                  AppHelpers.getTranslation(TrKeys.leaveGroup),
                               onPressed: () {
                                 ref.read(shopOrderProvider.notifier).deleteUser(
                                     context, 0,
@@ -229,6 +229,70 @@ class _ShopPageState extends ConsumerState<ShopPage>
                         elevation: 0.0,
                         flexibleSpace: FlexibleSpaceBar(
                           background: ShopPageAvatar(
+                            backButton: PopButton(
+                              onTap: () {
+                                if ((ref.watch(shopOrderProvider).cart?.group ??
+                                        false) &&
+                                    LocalStorage.instance.getUserId() !=
+                                        ref
+                                            .watch(shopOrderProvider)
+                                            .cart
+                                            ?.ownerId) {
+                                  AppHelpers.showAlertDialog(
+                                      context: context,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            AppHelpers.getTranslation(
+                                                TrKeys.doYouLeaveGroup),
+                                            style: Style.interNoSemi(),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          16.verticalSpace,
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: CustomButton(
+                                                    borderColor: Style.black,
+                                                    background:
+                                                        Style.transparent,
+                                                    title: AppHelpers
+                                                        .getTranslation(
+                                                            TrKeys.cancel),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    }),
+                                              ),
+                                              20.horizontalSpace,
+                                              Expanded(
+                                                child: CustomButton(
+                                                    title: AppHelpers
+                                                        .getTranslation(
+                                                            TrKeys.leaveGroup),
+                                                    onPressed: () {
+                                                      ref
+                                                          .read(
+                                                              shopOrderProvider
+                                                                  .notifier)
+                                                          .deleteUser(
+                                                              context, 0,
+                                                              userId: state
+                                                                  .userUuid);
+                                                      event.leaveGroup();
+                                                      Navigator.pop(context);
+                                                      Navigator.pop(context);
+                                                    }),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ));
+                                } else {
+                                  Navigator.pop(context);
+                                }
+                              },
+                            ),
                             workTime: state.endTodayTime.hour >
                                     TimeOfDay.now().hour
                                 ? "${state.startTodayTime.hour.toString().padLeft(2, '0')}:${state.startTodayTime.minute.toString().padLeft(2, '0')} - ${state.endTodayTime.hour.toString().padLeft(2, '0')}:${state.endTodayTime.minute.toString().padLeft(2, '0')}"
@@ -262,61 +326,8 @@ class _ShopPageState extends ConsumerState<ShopPage>
           floatingActionButton: Padding(
             padding: EdgeInsets.all(16.h),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                PopButton(
-                  onTap: () {
-                    if ((ref.watch(shopOrderProvider).cart?.group ?? false) &&
-                        LocalStorage.instance.getUserId() !=
-                            ref.watch(shopOrderProvider).cart?.ownerId) {
-                      AppHelpers.showAlertDialog(
-                          context: context,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                AppHelpers.getTranslation(
-                                    TrKeys.doYouLeaveGroup),
-                                style: Style.interNoSemi(),
-                                textAlign: TextAlign.center,
-                              ),
-                              16.verticalSpace,
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: CustomButton(
-                                        borderColor: Style.black,
-                                        background: Style.transparent,
-                                        title: AppHelpers.getTranslation(
-                                            TrKeys.cancel),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        }),
-                                  ),
-                                  20.horizontalSpace,
-                                  Expanded(
-                                    child: CustomButton(
-                                        title: AppHelpers.getTranslation(
-                                            TrKeys.leaveGroup),
-                                        onPressed: () {
-                                          ref
-                                              .read(shopOrderProvider.notifier)
-                                              .deleteUser(context, 0,
-                                                  userId: state.userUuid);
-                                          event.leaveGroup();
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        }),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ));
-                    } else {
-                      Navigator.pop(context);
-                    }
-                  },
-                ),
                 LocalStorage.instance.getToken().isNotEmpty
                     ? GestureDetector(
                         onTap: () {

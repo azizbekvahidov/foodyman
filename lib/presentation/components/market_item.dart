@@ -48,7 +48,7 @@ class MarketItem extends StatelessWidget {
               // ),
               decoration: BoxDecoration(
                   color: Style.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10.r))),
+                  borderRadius: BorderRadius.all(Radius.circular(30.r))),
               child: Stack(
                 children: [
                   Column(
@@ -59,8 +59,8 @@ class MarketItem extends StatelessWidget {
                         height: 118.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10.r),
-                              topRight: Radius.circular(10.r)),
+                              topLeft: Radius.circular(30.r),
+                              topRight: Radius.circular(30.r)),
                           child: CustomNetworkImage(
                             url: shop.backgroundImg ?? '',
                             height: 118.h,
