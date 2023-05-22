@@ -81,36 +81,35 @@ class Style {
 
   /// font style
 
-  static interBold({
-    double size = 18,
-    Color color = Style.black,
-    double letterSpacing = 0
-    }) =>
-      GoogleFonts.inter(
+  static interBold(
+          {double size = 18,
+          Color color = Style.black,
+          double letterSpacing = 0}) =>
+      GoogleFonts.epilogue(
           fontSize: size.sp,
           fontWeight: FontWeight.bold,
           color: color,
           letterSpacing: letterSpacing.sp,
           decoration: TextDecoration.none);
 
-  static interSemi({
-    double size = 18,
-    Color color = Style.black,
-    TextDecoration decoration =  TextDecoration.none,
-    double letterSpacing = 0}) =>
-      GoogleFonts.inter(
+  static interSemi(
+          {double size = 18,
+          Color color = Style.black,
+          TextDecoration decoration = TextDecoration.none,
+          double letterSpacing = 0}) =>
+      GoogleFonts.epilogue(
           fontSize: size.sp,
           fontWeight: FontWeight.w700,
           color: color,
           letterSpacing: letterSpacing.sp,
           decoration: decoration);
 
-  static interNoSemi({
-    double size = 18,
-    Color color = Style.black,
-    TextDecoration decoration =  TextDecoration.none,
-    double letterSpacing = 0}) =>
-      GoogleFonts.inter(
+  static interNoSemi(
+          {double size = 18,
+          Color color = Style.black,
+          TextDecoration decoration = TextDecoration.none,
+          double letterSpacing = 0}) =>
+      GoogleFonts.epilogue(
           fontSize: size.sp,
           fontWeight: FontWeight.w600,
           color: color,
@@ -118,12 +117,11 @@ class Style {
           decoration: decoration);
 
   static interNormal(
-      {double size = 16,
-        Color color = Style.black,
-        TextDecoration textDecoration = TextDecoration.none,
-        double letterSpacing = 0
-      }) =>
-      GoogleFonts.inter(
+          {double size = 16,
+          Color color = Style.black,
+          TextDecoration textDecoration = TextDecoration.none,
+          double letterSpacing = 0}) =>
+      GoogleFonts.epilogue(
           fontSize: size.sp,
           fontWeight: FontWeight.w500,
           color: color,
@@ -131,16 +129,14 @@ class Style {
           decoration: textDecoration);
 
   static interRegular(
-      {double size = 16,
-        Color color = Style.black,
-        TextDecoration textDecoration = TextDecoration.none,
-        double letterSpacing = 0}) =>
-      GoogleFonts.inter(
+          {double size = 16,
+          Color color = Style.black,
+          TextDecoration textDecoration = TextDecoration.none,
+          double letterSpacing = 0}) =>
+      GoogleFonts.epilogue(
           fontSize: size,
           fontWeight: FontWeight.w400,
           color: color,
           letterSpacing: letterSpacing.sp,
           decoration: textDecoration);
-
-
 }

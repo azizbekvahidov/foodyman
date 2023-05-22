@@ -57,7 +57,7 @@ class ProductMainButton extends StatelessWidget {
           Container(
             height: 50.h,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                borderRadius: BorderRadius.all(Radius.circular(20.r)),
                 border: Border.all(color: Style.textGrey)),
             child: Row(
               children: [
@@ -95,6 +95,7 @@ class ProductMainButton extends StatelessWidget {
           SizedBox(
             width: 120.w,
             child: CustomButton(
+              radius: 20.r,
               isLoading: state.isAddLoading,
               title: AppHelpers.getTranslation(TrKeys.add),
               onPressed: () {
@@ -105,7 +106,7 @@ class ProductMainButton extends StatelessWidget {
                           (state.productData!.shopId ?? 0), () {
                     Navigator.pop(context);
                     eventOrderShop.getCart(context, () {},
-                        shopId: shopId, userUuid: userUuid,cartId: cartId);
+                        shopId: shopId, userUuid: userUuid, cartId: cartId);
                   },
                       isGroupOrder: userUuid?.isNotEmpty ?? false,
                       cartId: cartId,

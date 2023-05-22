@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
@@ -29,9 +28,7 @@ class ShopBarItem extends StatelessWidget {
       onTap: () {
         context.pushRoute(StoryList(controller: controller, index: index));
       },
-      child:
-
-      Container(
+      child: Container(
         margin: EdgeInsets.only(right: 9.r),
         width: 110.w,
         color: Style.transparent,
@@ -44,13 +41,13 @@ class ShopBarItem extends StatelessWidget {
                 url: story?.url ?? "",
                 height: 164.h,
                 width: 110.w,
-                radius: 8.r,
+                radius: 20.r,
               ),
             ),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: EdgeInsets.only(top: 12.h,right: 8.w,left: 8.w),
+                padding: EdgeInsets.only(top: 12.h, right: 8.w, left: 8.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(100.r)),
                   child: BackdropFilter(

@@ -101,7 +101,7 @@ class ShopProductItem extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       color: Style.redBg,
                                       borderRadius:
-                                          BorderRadius.circular(30.r)),
+                                          BorderRadius.circular(20.r)),
                                   padding: EdgeInsets.all(4.r),
                                   child: Row(
                                     children: [
@@ -135,7 +135,7 @@ class ShopProductItem extends StatelessWidget {
                                     ),
                                     isDarkMode: false,
                                     isDrag: true,
-                                    radius: 12,
+                                    radius: 20,
                                   );
                                 },
                                 child: Container(

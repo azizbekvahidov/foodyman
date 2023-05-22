@@ -31,14 +31,14 @@ class RecommendedItem extends StatelessWidget {
         height: 190.h,
         decoration: BoxDecoration(
             color: Style.recommendBg,
-            borderRadius: BorderRadius.all(Radius.circular(10.r))),
+            borderRadius: BorderRadius.all(Radius.circular(20.r))),
         child: Stack(
           children: [
             CustomNetworkImage(
                 url: shop.backgroundImg ?? "",
                 width: MediaQuery.of(context).size.width / 2,
                 height: 190.h,
-                radius: 10.r),
+                radius: 20.r),
             Padding(
               padding: EdgeInsets.all(12.r),
               child: Column(

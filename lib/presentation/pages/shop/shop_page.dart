@@ -350,7 +350,7 @@ class _ShopPageState extends ConsumerState<ShopPage>
                             decoration: BoxDecoration(
                               color: Style.brandGreen,
                               borderRadius: BorderRadius.all(
-                                Radius.circular(10.r),
+                                Radius.circular(20.r),
                               ),
                             ),
                             padding: EdgeInsets.symmetric(

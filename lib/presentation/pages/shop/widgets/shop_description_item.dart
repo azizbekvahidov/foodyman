@@ -6,15 +6,20 @@ class ShopDescriptionItem extends StatelessWidget {
   final String title;
   final String description;
   final Widget icon;
-  const ShopDescriptionItem({Key? key, required this.title, required this.description, required this.icon}) : super(key: key);
+  const ShopDescriptionItem(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       height: 98.h,
       decoration: BoxDecoration(
           color: Style.bgGrey,
-          borderRadius: BorderRadius.all(Radius.circular(10.r))),
+          borderRadius: BorderRadius.all(Radius.circular(20.r))),
       padding: EdgeInsets.all(12.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +34,7 @@ class ShopDescriptionItem extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: (MediaQuery.of(context).size.width-132.h)/3,
+            width: (MediaQuery.of(context).size.width - 132.h) / 3,
             child: Text(
               description,
               style: Style.interSemi(
@@ -39,7 +44,6 @@ class ShopDescriptionItem extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-
           ),
         ],
       ),

@@ -42,7 +42,7 @@ class MarketItem extends StatelessWidget {
                   ? EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h)
                   : EdgeInsets.only(right: 8.r),
               width: 268.w,
-              height: 260.h,
+              height: 292.h,
               // foregroundDecoration: BoxDecoration(
               //   color: !(shop.open ?? true) ? Style.white.withOpacity(0.5) : Style.transparent
               // ),
@@ -56,14 +56,14 @@ class MarketItem extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: double.infinity,
-                        height: 118.h,
+                        height: 150.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30.r),
                               topRight: Radius.circular(30.r)),
                           child: CustomNetworkImage(
                             url: shop.backgroundImg ?? '',
-                            height: 118.h,
+                            height: 150.h,
                             width: double.infinity,
                             radius: 0,
                           ),
